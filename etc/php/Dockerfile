@@ -22,6 +22,10 @@ RUN apt-get update && apt-get install -y \
     libicu-dev \
     libmagickwand-dev
 
+RUN echo 'deb [trusted=yes] https://repo.symfony.com/apt/ /' | tee /etc/apt/sources.list.d/symfony-cli.list
+RUN apt update
+RUN apt install symfony-cli
+
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
