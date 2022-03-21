@@ -20,7 +20,9 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libzip-dev \
     libicu-dev \
-    libmagickwand-dev
+    libmagickwand-dev \
+    nodejs \
+    npm
 
 RUN echo 'deb [trusted=yes] https://repo.symfony.com/apt/ /' | tee /etc/apt/sources.list.d/symfony-cli.list
 RUN apt update
@@ -42,6 +44,10 @@ RUN docker-php-ext-enable imagick
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Laravel installer
+RUN composer global require laravel/installer
+
 
 # Add user for laravel application
 RUN groupadd -g 1000 www
