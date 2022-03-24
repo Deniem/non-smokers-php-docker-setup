@@ -1,12 +1,12 @@
 version: '3'
 services:
   #PHP Service
-  phpfpm74:
+  phpfpm:
     build:
       context: .
       dockerfile: etc/php/Dockerfile
-    image: phpfpm74
-    container_name: phpfpm74
+    image: phpfpm
+    container_name: phpfpm
     restart: unless-stopped
     tty: true
     working_dir: /var/www

@@ -1,5 +1,6 @@
-FROM php:7.4-fpm
+#FROM php:7.4-fpm
 
+FROM php:8.0-fpm
 # Set working directory
 WORKDIR /var/www
 
@@ -33,10 +34,10 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install extensions
 RUN docker-php-ext-install gd intl pdo_mysql pdo_pgsql mysqli zip
-RUN docker-php-ext-install gd
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-configure zip
 
+RUN docker-php-ext-install pcntl exif sockets
 RUN pecl install imagick
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 
